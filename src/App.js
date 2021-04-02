@@ -1,3 +1,7 @@
-const App = () => <div>Hello from app</div>;
+import styles from './app.module.scss';
+
+const App = () => (
+  <div className={styles.container}>Hello from app</div>
+);
 
 export default App;
