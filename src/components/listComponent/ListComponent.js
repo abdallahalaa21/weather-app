@@ -18,12 +18,14 @@ const formateDate = ({ time, type }) => {
   });
 };
 
-const ListComponent = ({ data, type }) => {
+const ListComponent = ({ data, type, now }) => {
   const { formatTemp } = useContext(DegreeContext);
   return (
     <div className={styles.componentContainer}>
       <p className={styles.time}>
-        {formateDate({ time: data?.time, type })}
+        {now
+          ? 'Now'
+          : formateDate({ time: data?.time, type })}
       </p>
       <img
         src={`https://darksky.net/images/weather-icons/${data?.icon}.png`}
@@ -48,6 +50,7 @@ const ListComponent = ({ data, type }) => {
 
 ListComponent.propTypes = {
   data: PropTypes.object.isRequired,
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
+  now: PropTypes.bool.isRequired
 };
 export default ListComponent;

@@ -5,7 +5,7 @@ import cx from 'classnames';
 import styles from './ListingTemp.module.scss';
 
 const ListingTemp = ({ hourly, daily }) => {
-  const [type, setType] = useState('daily');
+  const [type, setType] = useState('hourly');
   const currentData = useMemo(() => {
     if (type === 'daily') {
       return daily;
@@ -40,11 +40,12 @@ const ListingTemp = ({ hourly, daily }) => {
         </button>
       </div>
       <div className={styles.listingContainer}>
-        {currentData?.map(data => (
+        {currentData?.map((data, i) => (
           <ListComponent
             key={data?.time}
             data={data}
             type={type}
+            now={type === 'hourly' && i === 0}
           />
         ))}
       </div>
