@@ -6,6 +6,7 @@ import Header from './components/header/Header';
 import MainSection from './components/mainSection';
 import ListingTemp from './components/listingTemp';
 import Loading from './components/loading';
+import Error from './components/error';
 
 const App = () => {
   const {
@@ -13,7 +14,9 @@ const App = () => {
     currently,
     daily,
     hourly,
-    loading
+    loading,
+    error,
+    setDummy
   } = useTemp();
 
   const dailyModify = useMemo(() => {
@@ -31,17 +34,23 @@ const App = () => {
           <Loading />
         ) : (
           <>
-            <MainSection
-              data={{
-                city,
-                today: dailyModify?.today,
-                ...currently
-              }}
-            />
-            <ListingTemp
-              hourly={hourly?.data}
-              daily={dailyModify?.nextDays}
-            />
+            {error ? (
+              <Error onClick={setDummy} />
+            ) : (
+              <>
+                <MainSection
+                  data={{
+                    city,
+                    today: dailyModify?.today,
+                    ...currently
+                  }}
+                />
+                <ListingTemp
+                  hourly={hourly?.data}
+                  daily={dailyModify?.nextDays}
+                />
+              </>
+            )}
           </>
         )}
       </div>

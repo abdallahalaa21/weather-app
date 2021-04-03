@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import dummyData from 'helpers/dummyData';
 import useLocation from './useLocation';
 
@@ -7,7 +7,7 @@ const proxy = 'https://cors-anywhere.herokuapp.com/';
 const useTemp = () => {
   const [tempData, setTempData] = useState();
   const [loading, setLoading] = useState(true);
-
+  const [error, setError] = useState(false);
   const { longitude, latitude, city } = useLocation();
 
   useEffect(() => {
@@ -24,6 +24,7 @@ const useTemp = () => {
             if (process.env.NODE_ENV === 'development') {
               setTempData(dummyData);
             }
+            setError(true);
           });
         setLoading(false);
       };
@@ -32,7 +33,12 @@ const useTemp = () => {
     }
   }, [latitude, longitude]);
 
-  return { city, loading, ...tempData };
+  const setDummy = useCallback(() => {
+    setTempData(dummyData);
+    setError(false);
+  }, []);
+
+  return { city, loading, error, setDummy, ...tempData };
 };
 
 export default useTemp;

@@ -1,0 +1,19 @@
+.errorContainer{
+  height: 70vh;
+
+  .text{
+    font-size:50px;
+  }
+  .btn{
+    margin-top:50px;
+    background:transparent;
+    border: none;
+    font-family: Work Sans;
+    font-size:30px;
+    color: #FFFFFF;
+    cursor: pointer;
+    &:hover{
+      color: #FCB641;
+    }
+  }
+}
