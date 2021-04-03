@@ -10,7 +10,9 @@ const ListingTemp = ({ hourly, daily }) => {
     if (type === 'daily') {
       return daily;
     }
-    return hourly;
+    const next24temp = [...hourly];
+    next24temp.length = 24;
+    return next24temp;
   }, [daily, hourly, type]);
 
   return (
