@@ -4,9 +4,10 @@ import useTemp from 'hooks/useTemp';
 import styles from './app.module.scss';
 import Header from './components/header/Header';
 import MainSection from './components/mainSection';
+import ListingTemp from './components/listingTemp';
 
 const App = () => {
-  const { city, currently, daily } = useTemp();
+  const { city, currently, daily, hourly } = useTemp();
 
   const dailyModify = useMemo(() => {
     if (daily?.data.length) {
@@ -26,6 +27,10 @@ const App = () => {
             today: dailyModify?.today,
             ...currently
           }}
+        />
+        <ListingTemp
+          hourly={hourly?.data}
+          daily={dailyModify?.nextDays}
         />
       </div>
     </TempDegreeProvider>

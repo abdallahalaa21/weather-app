@@ -28,7 +28,7 @@ const useTemp = () => {
       fetchData();
     }
   }, [latitude, longitude]);
-  console.log(tempData);
+
   return { ...tempData, city };
 };
 
