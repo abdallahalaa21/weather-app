@@ -16,16 +16,17 @@ const MainSection = ({ data }) => (
   <section className={styles.cityContainer}>
     <div>
       <p className={styles.city}>{data?.city}</p>
-      <p className={styles.date}>{data?.date}</p>
+      <p className={styles.date}>
+        {' '}
+        {formateDate(data?.time)}
+      </p>
       <img
         src={`https://darksky.net/images/weather-icons/${data?.icon}.png`}
         alt={data?.summary}
         width="97px"
         height="97px"
       />
-      <p className={styles.weather}>
-        {formateDate(data?.time)}
-      </p>
+      <p className={styles.weather}>{data?.summary}</p>
     </div>
     <div>
       <p className={styles.temp}>
