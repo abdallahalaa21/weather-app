@@ -15,7 +15,7 @@ const App = () => {
     daily,
     hourly,
     loading,
-    // error,
+    error,
     url,
     setDummy
   } = useTemp();
@@ -35,7 +35,7 @@ const App = () => {
           <Loading />
         ) : (
           <>
-            {true ? (
+            {error ? (
               <Error onClick={setDummy} link={url} />
             ) : (
               <>
