@@ -1,0 +1,50 @@
+.cityContainer{
+  display:flex; 
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:flex-end;
+  margin-top:170px;
+
+  .city {
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 75px;
+    letter-spacing: 0.05em;
+  }
+
+  .date{
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.05em;
+    margin-top: 10px;
+    margin-bottom:35px;
+  }
+  .weather {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    margin-top: 16px;
+  }
+
+  .temp{
+    font-weight: bold;
+    font-size: 144px;
+    line-height: 169px;
+    letter-spacing: 0.05em;
+  }
+
+  .minMaxTemp{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 56px;
+    margin-top:12px;
+    margin-bottom:22px
+  }
+  .summery {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 28px;
+  }
+}
