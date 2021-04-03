@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import axios from 'axios';
 
 const useLocation = () => {
   const [location, setLocation] = useState({});
@@ -11,13 +10,15 @@ const useLocation = () => {
         setLocation({ latitude, longitude });
       },
       async () => {
-        const { data } = await axios(
+        const result = await fetch(
           'https://geolocation-db.com/json/'
-        );
-        if (data?.latitude && data?.longitude) {
+        )
+          .then(response => response.json())
+          .then(data => data);
+        if (result?.latitude && result?.longitude) {
           setLocation({
-            latitude: data.latitude,
-            longitude: data.longitude
+            latitude: result.latitude,
+            longitude: result.longitude
           });
         }
       }
