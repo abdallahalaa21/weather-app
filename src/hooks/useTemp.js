@@ -17,7 +17,12 @@ const useTemp = () => {
         url = proxy + url;
       }
       const fetchData = async () => {
-        await fetch(url)
+        await fetch(url, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        })
           .then(response => response.json())
           .then(data => setTempData(data))
           .catch(() => {
