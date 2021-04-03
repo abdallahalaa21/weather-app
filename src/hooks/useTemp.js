@@ -2,8 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import dummyData from 'helpers/dummyData';
 import useLocation from './useLocation';
 
-const proxy = 'https://cors-anywhere.herokuapp.com/';
-
 const useTemp = () => {
   const [tempData, setTempData] = useState();
   const [loading, setLoading] = useState(true);
@@ -12,10 +10,8 @@ const useTemp = () => {
 
   useEffect(() => {
     if (latitude && longitude) {
-      let url = `https://api.darksky.net/forecast/${process.env.REACT_APP_API_KEY}/${latitude},${longitude}`;
-      if (process.env.NODE_ENV === 'development') {
-        url = proxy + url;
-      }
+      const url = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.REACT_APP_API_KEY}/${latitude},${longitude}`;
+
       const fetchData = async () => {
         await fetch(url, {
           headers: {
