@@ -1,6 +1,16 @@
 import PropTypes from 'prop-types';
-import image from 'images/weatherIcons/cloudy.svg';
 import styles from './MainSection.module.scss';
+
+const formateDate = time => {
+  const date = new Date(time * 1000);
+
+  return date.toLocaleString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
 
 const MainSection = ({ data }) => (
   <section className={styles.cityContainer}>
@@ -8,19 +18,28 @@ const MainSection = ({ data }) => (
       <p className={styles.city}>{data?.city}</p>
       <p className={styles.date}>{data?.date}</p>
       <img
-        src={image}
-        alt={data?.icon}
+        src={`https://darksky.net/images/weather-icons/${data?.icon}.png`}
+        alt={data?.summary}
         width="97px"
         height="97px"
       />
-      <p className={styles.weather}>{data?.weather}</p>
+      <p className={styles.weather}>
+        {formateDate(data?.time)}
+      </p>
     </div>
     <div>
-      <p className={styles.temp}>{data?.temp}&#xb0;</p>
-      <p className={styles.minMaxTemp}>
-        {data?.maxTemp} &#xb0;/ {data?.minTemp}&#xb0;
+      <p className={styles.temp}>
+        {data?.temperature?.toFixed()}&#xb0;
       </p>
-      <p className={styles.summery}>{data?.summery}</p>
+      <p className={styles.minMaxTemp}>
+        {data?.today?.apparentTemperatureMax?.toFixed()}{' '}
+        &#xb0;/{' '}
+        {data?.today?.apparentTemperatureMin?.toFixed()}
+        &#xb0;
+      </p>
+      <p className={styles.summary}>
+        {data?.today?.summary}
+      </p>
     </div>
   </section>
 );
