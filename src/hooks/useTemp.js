@@ -5,7 +5,7 @@ const proxy = 'https://cors-anywhere.herokuapp.com/';
 
 const useTemp = () => {
   const [tempData, setTempData] = useState();
-  const { longitude, latitude } = useLocation();
+  const { longitude, latitude, city } = useLocation();
 
   useEffect(() => {
     if (latitude && longitude) {
@@ -24,7 +24,7 @@ const useTemp = () => {
     }
   }, [latitude, longitude]);
 
-  return tempData;
+  return { ...tempData, city };
 };
 
 export default useTemp;
