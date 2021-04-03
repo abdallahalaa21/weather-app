@@ -31,3 +31,14 @@
     border-left: 2px solid #FFFFFF;
   }
 }
+@media only screen and (max-width: 768px)  {
+ .header{
+    h1{
+      font-size: 30px;
+    }
+    .degreeBtn{
+      font-size: 22px;
+      padding: 10px ;
+    }
+ }
+}

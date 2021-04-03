@@ -16,7 +16,7 @@ const ListingTemp = ({ hourly, daily }) => {
   }, [daily, hourly, type]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.btnContainer}>
         <button
           type="button"
