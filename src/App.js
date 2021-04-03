@@ -5,9 +5,16 @@ import styles from './app.module.scss';
 import Header from './components/header/Header';
 import MainSection from './components/mainSection';
 import ListingTemp from './components/listingTemp';
+import Loading from './components/loading';
 
 const App = () => {
-  const { city, currently, daily, hourly } = useTemp();
+  const {
+    city,
+    currently,
+    daily,
+    hourly,
+    loading
+  } = useTemp();
 
   const dailyModify = useMemo(() => {
     if (daily?.data.length) {
@@ -16,22 +23,27 @@ const App = () => {
     }
     return {};
   }, [daily]);
-
   return (
     <TempDegreeProvider>
       <div className={styles.container}>
         <Header />
-        <MainSection
-          data={{
-            city,
-            today: dailyModify?.today,
-            ...currently
-          }}
-        />
-        <ListingTemp
-          hourly={hourly?.data}
-          daily={dailyModify?.nextDays}
-        />
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <MainSection
+              data={{
+                city,
+                today: dailyModify?.today,
+                ...currently
+              }}
+            />
+            <ListingTemp
+              hourly={hourly?.data}
+              daily={dailyModify?.nextDays}
+            />
+          </>
+        )}
       </div>
     </TempDegreeProvider>
   );
